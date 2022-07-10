@@ -336,8 +336,6 @@ public class FourthClassController implements Initializable {
                         e.printStackTrace();
                     }
 
-
-
                 }
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
