@@ -1,0 +1,39 @@
+
+
+
+.menu-bar .label{
+    -fx-text-fill: white;
+}
+.menu:showing {
+    -fx-background-color: #1c3c3b;
+}
+
+.context-menu{
+    -fx-background-color: #1c3c3b;
+}
+.menu-item:focused{
+    -fx-background-color: #00c27d;
+}
+.menu-bar >.container >.menu-button:hover >.label,
+.menu-bar >.container >.menu-button:focused >.label,
+.menu-bar >.container >.menu-button:showing >.label{
+    -fx-background-color: #00c27d;
+}
+
+.Bpane {
+    -fx-background-color: grey;
+}
+
+@-webkit-keyframes blinker {
+    from {opacity: 1.0;}
+    to {opacity: 0.0;}
+}
+.blink{
+    text-decoration: blink;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-direction: alternate;
+}
+

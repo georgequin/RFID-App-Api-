@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="572.0" prefWidth="781.0" style="-fx-background-color:  grey;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.About">
+    <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: GREY;" VBox.vgrow="ALWAYS">
+        <VBox prefHeight="663.0" prefWidth="781.0" style="-fx-background-color:#1c3c3b">
+            <HBox prefWidth="667.0">
+                <VBox.margin>
+                    <Insets top="20.0" />
+                </VBox.margin>
+                <Circle fx:id="naub_logo" fill="DODGERBLUE" radius="64.5" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                    </HBox.margin>
+                </Circle>
+                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color:#1c3c3b" HBox.hgrow="ALWAYS">
+                    <Label text="NAUB ACCESS CONTROL/MANAGEMENT APP" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                        <font>
+                            <Font name="Arial Black" size="20.0" fx:id="x1" />
+                        </font>
+                        <textFill>
+                            <Color red="0.000" green="0.761" blue="0.490" fx:id="x8" />
+                        </textFill>
+                        <VBox.margin>
+                            <Insets left="10.0" top="20.0" />
+                        </VBox.margin>
+                    </Label>
+                    <HBox>
+                        <Label font="$x1" text="Powered by:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label text="NAUB ICT" textAlignment="CENTER" textFill="#dfdfdf">
+                            <font>
+                                <Font name="Algerian" size="20.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" top="5.0" fx:id="x3" />
+                            </HBox.margin>
+                        </Label>
+                    </HBox>
+                    <Label text="Version 1.0.1" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+                        <font>
+                            <Font name="System Bold" size="12.0" />
+                        </font>
+                    </Label>
+                    <Label text="Copyright 2018  NIGERIAN ARMY UNIVERSITY BIU.  All rights Reserved" textAlignment="CENTER" textFill="WHITE" VBox.margin="$x3" VBox.vgrow="ALWAYS">
+                        <font>
+                            <Font name="Arial" size="12.0" />
+                        </font>
+                    </Label>
+                </VBox>
+            </HBox>
+            <Label text="LEAD DEVELOPERS" textAlignment="CENTER" textFill="$x8" VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets left="10.0" top="20.0" />
+                </VBox.margin>
+            <font>
+                    <Font name="System Bold Italic" size="15.0" fx:id="x6" />
+            </font>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color:#1c3c3b" VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets left="10.0" right="10.0" top="10.0" fx:id="x5" />
+                </VBox.margin>
+                <Circle id="george_img" fx:id="dev_img1" fill="DODGERBLUE" radius="43.50004999999874" stroke="BLACK" strokeType="INSIDE">
+               <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x4" />
+               </HBox.margin></Circle>
+                <VBox prefHeight="98.0" prefWidth="659.0">
+                    <Label fx:id="devName1" text="FULLNAME" textFill="WHITE" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" top="10.0" />
+                        </VBox.margin>
+                  <font>
+                            <Font name="Arial Black" size="12.0" fx:id="x7" />
+                  </font>
+                    </Label>
+                    <Label fx:id="devTitle1" text="TITLE/POSITION" textAlignment="CENTER" textFill="$x8" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="devDetails1" text="DETAILS" textFill="$x8" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" />
+                        </VBox.margin>
+                    </Label>
+                </VBox>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color:#1c3c3b" VBox.margin="$x5" VBox.vgrow="ALWAYS">
+                <Circle id="salim_img" fx:id="dev_img2" fill="DODGERBLUE" radius="43.50004999999874" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS" HBox.margin="$x4" />
+                <VBox prefHeight="98.0" prefWidth="649.0">
+                    <Label fx:id="devName2" font="$x7" text="FULLNAME" textFill="WHITE" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" top="10.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="devTitle2" text="TITLE/POSITION" textAlignment="CENTER" textFill="$x8" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="devDetails2" text="DETAILS" textFill="$x8" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" />
+                        </VBox.margin>
+                    </Label>
+                </VBox>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color:#1c3c3b" VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </VBox.margin>
+                <Circle id="ken_img" fx:id="dev_img3" fill="DODGERBLUE" radius="43.50004999999874" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS" HBox.margin="$x4" />
+                <VBox prefHeight="98.0" prefWidth="367.0">
+                    <Label fx:id="devName3" font="$x7" text="FULLNAME" textFill="WHITE" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" top="10.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="devTitle3" text="TITLE/POSITION" textAlignment="CENTER" textFill="$x8" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label id="devDetails2" fx:id="devDetails3" text="DETAILS" textFill="$x8" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" />
+                        </VBox.margin>
+                    </Label>
+                </VBox>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</VBox>

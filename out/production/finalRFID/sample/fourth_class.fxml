@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox fx:id="mother_paneV" alignment="TOP_CENTER" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.FourthClassController">
+    <children>
+        <MenuBar fx:id="menu_bar" style="-fx-background-color: #1c3c3b;" styleClass="menu-bar" stylesheets="mod.css">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#StopScan" text="Stop Scan" />
+                        <MenuItem mnemonicParsing="false" onAction="#RaiseAlarm" text="Raise Alarm" />
+                        <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#AboutPage" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+            <VBox.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </VBox.margin>
+        </MenuBar>
+        <HBox id="logo" fx:id="logo_pane" prefHeight="100.0" prefWidth="200.0" style="&#10;-fx-background-color:#1c3c3b;">
+            <children>
+                <Circle id="army_logo" fx:id="logo1" fill="DODGERBLUE" radius="51.5" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                    </HBox.margin>
+                </Circle>
+                <Region prefHeight="200.0" HBox.hgrow="ALWAYS" />
+                <VBox alignment="CENTER" prefHeight="123.0" prefWidth="539.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="NIGERIAN ARMY UNIVERSITY BIU" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+                            <font>
+                                <Font name="Britannic Bold" size="35.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" text="RFID MANAGEMENT SYSTEM" textFill="WHITE">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <Region prefHeight="200.0" HBox.hgrow="ALWAYS" />
+                <Circle fx:id="army_logo" fill="DODGERBLUE" radius="51.5" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                    </HBox.margin>
+                </Circle>
+            </children>
+            <VBox.margin>
+                <Insets left="10.0" right="10.0" />
+            </VBox.margin>
+        </HBox>
+        <HBox prefHeight="44.0" prefWidth="790.0">
+            <children>
+                <Button fx:id="scan_button" mnemonicParsing="false" onAction="#scan" text="Start Scan" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </HBox.margin>
+                </Button>
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox>
+                    <children>
+                        <Label text="INPUT ID" textFill="#2b4c2b">
+                            <font>
+                                <Font name="Algerian" size="16.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="20.0" right="5.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="input" prefWidth="250.0" promptText="MATRIC NUMBER">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="6.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#Search" text="search">
+                            <effect>
+                                <InnerShadow>
+                                    <input>
+                                        <Glow />
+                                    </input>
+                                </InnerShadow>
+                            </effect>
+                            <font>
+                                <Font name="Arial Black" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <HBox fx:id="center_pane" alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="780.0" style="-fx-background-color:#1c3c3b;" VBox.vgrow="ALWAYS">
+            <children>
+                <HBox fx:id="rfid_image_view" alignment="BOTTOM_CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="169.0" prefWidth="683.0" styleClass="blink" visible="false">
+                    <children>
+                        <ImageView fx:id="rfid_imageView" fitHeight="191.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true" styleClass="blink">
+                            <image>
+                                <Image url="@image/rfid_image.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets bottom="7.0" left="100.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="59.0" prefWidth="303.0" styleClass="blink" text="WAITING!!!" textFill="#f8f5f5">
+                            <font>
+                                <Font name="System Bold Italic" size="43.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <VBox.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

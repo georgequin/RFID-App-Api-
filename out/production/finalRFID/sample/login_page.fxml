@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="MOTHER_PANE" prefHeight="400.0" prefWidth="600.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.LoginController">
+   <MenuBar fx:id="login_nav" style="-fx-background-color: #1c3c3b;" visible="false">
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem fx:id="close_attendance" mnemonicParsing="false" onAction="#printAttendance" text="Print attendance" />
+               <MenuItem mnemonicParsing="false" onAction="#logOut" text="Close" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Delete" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+    <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #1C3C3B;" VBox.vgrow="NEVER">
+        <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </VBox.margin>
+        <Circle fx:id="logo1" fill="DODGERBLUE" radius="61.5" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets bottom="5.0" left="10.0" top="10.0" />
+            </HBox.margin>
+        </Circle>
+        <Region prefHeight="138.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+        <VBox alignment="CENTER" prefHeight="138.0" HBox.hgrow="ALWAYS">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" text="NIGERIAN ARMY UNIVERSITY BIU" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="Arial Black" size="40.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="5.0" right="5.0" top="40.0" />
+                    </HBox.margin>
+                </Label>
+                <Label alignment="TOP_CENTER" text="RFID MANAGEMENT SYSTEM" textFill="WHITE">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Region prefHeight="138.0" prefWidth="13.0" HBox.hgrow="ALWAYS" />
+        <Circle fx:id="army_logo" fill="DODGERBLUE" radius="61.5" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets bottom="5.0" right="10.0" top="10.0" />
+            </HBox.margin>
+        </Circle>
+    </HBox>
+   <VBox fx:id="login_center_pane" prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color:#1c3c3b;">
+                      <HBox alignment="CENTER">
+                          <Region HBox.hgrow="ALWAYS" />
+                          <Label alignment="CENTER" text="WELCOME" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <font>
+                                  <Font name="Arial Black" size="20.0" />
+                              </font>
+                              <HBox.margin>
+                                  <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
+                              </HBox.margin>
+                          </Label>
+                          <Region HBox.hgrow="ALWAYS" />
+                      </HBox>
+                      <HBox>
+                          <VBox.margin>
+                              <Insets bottom="20.0" />
+                          </VBox.margin>
+                          <Label text="USERNAME:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <font>
+                                  <Font name="Arial Black" size="15.0" fx:id="x1" />
+                              </font>
+                              <HBox.margin>
+                                  <Insets left="10.0" right="10.0" top="20.0" />
+                              </HBox.margin>
+                          </Label>
+                          <TextField fx:id="username_fd" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                  <Insets left="5.0" right="10.0" top="20.0" />
+                              </HBox.margin>
+                          </TextField>
+                      </HBox>
+                      <HBox>
+                          <Label font="$x1" text="PASSWORD:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                  <Insets left="10.0" right="10.0" top="10.0" />
+                              </HBox.margin>
+                          </Label>
+                          <PasswordField fx:id="password_fd" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <HBox.margin>
+                                  <Insets left="5.0" right="10.0" top="10.0" />
+                              </HBox.margin>
+                          </PasswordField>
+                      </HBox>
+                      <HBox prefHeight="100.0" prefWidth="200.0">
+                          <Region HBox.hgrow="ALWAYS" />
+                          <Button defaultButton="true" mnemonicParsing="false" onAction="#login2" prefHeight="40.0" prefWidth="79.0" text="LOGIN" HBox.hgrow="ALWAYS">
+                              <font>
+                                  <Font name="Arial Black" size="13.0" />
+                              </font>
+                              <HBox.margin>
+                                  <Insets top="30.0" />
+                              </HBox.margin>
+                          </Button>
+                          <Button defaultButton="true" mnemonicParsing="false" onAction="#scanOnLogin" prefHeight="40.0" prefWidth="79.0" text="SCAN" HBox.hgrow="ALWAYS">
+                              <font>
+                                  <Font name="Arial Black" size="13.0" />
+                              </font>
+                              <HBox.margin>
+                                  <Insets left="20.0" top="30.0" />
+                              </HBox.margin>
+                          </Button>
+                          <Region HBox.hgrow="ALWAYS" />
+                      </HBox>
+                  </VBox>
+            </children>
+            <opaqueInsets>
+               <Insets top="50.0" />
+            </opaqueInsets>
+            <VBox.margin>
+               <Insets top="70.0" />
+            </VBox.margin>
+         </HBox>
+         <VBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="600.0">
+            <children>
+               <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="65.0">
+                  <children>
+                     <TextField fx:id="ipAddress" visible="false" />
+                     <Button fx:id="change_ip_address_button" mnemonicParsing="false" onAction="#changeIPAdress" text="-&gt;" visible="false">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Button>
+                     <MenuButton alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Tools">
+                       <items>
+                         <MenuItem fx:id="change_IP" mnemonicParsing="false" onAction="#change_ip_drop_button" text="Change IP" />
+                         <MenuItem mnemonicParsing="false" onAction="#scan_invigilator_to_start_exams" text="Invigilate" />
+                           <MenuItem fx:id="student_attendance" mnemonicParsing="false" onAction="#studentAttendance" text="Student Attendance" />
+                       </items>
+                        <font>
+                           <Font name="System Bold" size="19.0" />
+                        </font>
+                     </MenuButton>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="10.0" right="20.0" />
+                  </VBox.margin>
+               </HBox>
+            </children>
+            <VBox.margin>
+               <Insets top="100.0" />
+            </VBox.margin>
+         </VBox>
+      </children>
+   </VBox>
+</VBox>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="624.0" prefWidth="600.0" style="-fx-background-color: #1c3c3b;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <HBox fx:id="center_pane" alignment="CENTER" style="-fx-background-color:#1c3c3b;" VBox.vgrow="ALWAYS">
+        <children>
+            <HBox fx:id="rfid_image_view" alignment="BOTTOM_CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="169.0" prefWidth="683.0" styleClass="blink" visible="false">
+                <children>
+                    <ImageView fx:id="rfid_imageView" fitHeight="191.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true" styleClass="blink">
+                        <image>
+                            <Image url="@image/rfid_image.png" />
+                        </image>
+                        <HBox.margin>
+                            <Insets bottom="7.0" left="100.0" />
+                        </HBox.margin>
+                    </ImageView>
+                    <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="59.0" prefWidth="303.0" styleClass="blink" text="WAITING!!!" textFill="#f8f5f5">
+                        <font>
+                            <Font name="System Bold Italic" size="43.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+        </children>
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+        </VBox.margin>
+    </HBox>
+
+</VBox>
