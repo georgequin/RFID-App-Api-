@@ -30,8 +30,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -208,6 +208,8 @@ public class ThirdClassController implements Initializable {
         String new_path1 = decodedPath + "\\token.txt";
         String new_path2 = new_path1;
 
+
+
         String token = null;
         try {
             Stream<String> lines = Files.lines(Paths.get(new_path2));
@@ -316,116 +318,131 @@ public class ThirdClassController implements Initializable {
                 System.out.println("Connected to port: " + portName);
 
                 try{
+                    AtomicReference<String> rfid_code = new AtomicReference<>("");
                     System.out.println("trying the listener");
                     serialPort.addEventListener((SerialPortEvent serialPortEvent) -> {
-                        System.out.println("Abeg this is before if");
-                        if (serialPortEvent.isRXCHAR() && serialPortEvent.getEventValue() >= 0) {
+                        if (serialPortEvent.isRXCHAR()) {
                             System.out.println("Abeg this is before try");
+
                             try {
                                 String st = serialPort.readString(serialPortEvent.getEventValue());
                                 String st1 = serialPort.readHexString(serialPortEvent.getEventValue());
-                                String rfid_code = st.replace("\n", "");
-                                System.out.println("Card number: " + rfid_code);
+                                 if (st.equals(" ")){
+
+                                     rfid_code.set(st.replace(" ", ""));
+                                     System.out.println("Card number: " + rfid_code);
+                                 }else {
+                                     if (st.equals("\n")){
+                                         rfid_code.set(st.replace("\n", ""));
+                                     }
+//                                     System.out.println("has something");
+                                     rfid_code.set(rfid_code + st);
+                                     System.out.println(rfid_code.get());
+                                 }
+
                                 //make database request, validate result and return either error page or profile page
-                                Platform.runLater(() ->{
-                                    //get student data with token
-                                    Webb webb = Webb.create();
-                                    JSONObject response00 = webb.post("https://" +ip_address + "/scan-profile/")
-                                            .param("rfid_code",rfid_code)
-                                            .param("api_request", true)
-                                            .ensureSuccess()
-                                            .connectTimeout(10000)
-                                            .retry(0,false)
-                                            .asJsonObject()
-                                            .getBody();
-
-                                    try {
-                                        int status_code = response00.getInt("status_code");
-                                        if (status_code == 0){
-                                            System.out.println("card doesnt exist");
-                                            try {
-                                                Parent content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/sample/card_not_registered_error.fxml")));
-                                                mother_paneV.getChildren().set(3, content);
-                                            } catch (IOException E) {
-                                                E.printStackTrace();
-                                            }
-                                        }else{
-                                            boolean is_staff = response00.getBoolean("is_staff");
-                                            if (is_staff){
-                                                System.out.println("this is staff");
-                                                System.out.println(response00.getJSONArray("student").get(0));
-                                                JSONObject jsonArray1 = (JSONObject) response00.getJSONArray("student").get(0);
-                                                //COLLECT DIRECTLY FROM JSON
-                                                String first_name = jsonArray1.getJSONObject("fields").get("first_name").toString();
-                                                String surname = jsonArray1.getJSONObject("fields").get("surname").toString();
-                                                String other_name = jsonArray1.getJSONObject("fields").get("other_name").toString();
-                                                String department = jsonArray1.getJSONObject("fields").get("department").toString();
-                                                String staff_id = jsonArray1.getJSONObject("fields").get("staff_id_number").toString();
-                                                String designation = jsonArray1.getJSONObject("fields").get("designation").toString();
-                                                String image_url = jsonArray1.getJSONObject("fields").get("photo").toString();
-                                                Image image1 = new Image("https://" + ip_address +"/media/" +image_url, 250, 250, true, true);
-
-                                                FXMLLoader loader = new FXMLLoader();
-                                                loader.setLocation(FourthClassController.class.getResource("/sample/staff_profile.fxml"));
-                                                loader.setController(this);
-                                                System.out.println("collected ui successfully");
-                                                mother_paneV.getChildren().set(3, loader.load());
-
-                                                full_name1.setText(surname + " " + first_name + " " + other_name );
-                                                designation_field.setText(designation);
-                                                mat_Onj.setText(staff_id);
-                                                dept_obj.setText(department);
-                                                Circle_img.setFill(new ImagePattern(image1));
-                                                return_msg.setText("STAFF");
-
-                                            }else {
-                                                System.out.println("this is student");
-                                                System.out.println(response00.getJSONArray("student").get(0));
-                                                JSONObject jsonArray1 = (JSONObject) response00.getJSONArray("student").get(0);
-                                                String first_name = jsonArray1.getJSONObject("fields").get("first_name").toString();
-                                                String surname = jsonArray1.getJSONObject("fields").get("surname").toString();
-                                                String other_name = jsonArray1.getJSONObject("fields").get("other_name").toString();
-                                                String department = jsonArray1.getJSONObject("fields").get("department").toString();
-                                                String matric_no = jsonArray1.getJSONObject("fields").get("matric_number").toString();
-                                                String level = jsonArray1.getJSONObject("fields").get("level").toString();
-                                                String flag = jsonArray1.getJSONObject("fields").get("is_flaged").toString();
-                                                System.out.println(flag);
-                                                String image_url = jsonArray1.getJSONObject("fields").get("photo").toString();
-                                                Image image1 = new Image("https://" + ip_address +"/media/" +image_url, 250, 250, true, true);
-
-                                                FXMLLoader loader = new FXMLLoader();
-                                                loader.setLocation(FourthClassController.class.getResource("/sample/profile_page.fxml"));
-                                                loader.setController(this);
-                                                System.out.println("collected ui successfully");
-                                                mother_paneV.getChildren().set(3, loader.load());
-
-                                                if (flag.equals("null")) {
-                                                    new_flag_view.setVisible(false);
-                                                    System.out.println("flag is null");
-                                                } else {
-                                                    new_flag_view.setVisible(true);
-                                                    new_flag_reason.setText(flag);
-                                                }
-                                                full_name1.setText(first_name + " " + surname + " " + other_name );
-                                                level_field.setText(level);
-                                                mat_Onj.setText(matric_no);
-                                                dept_obj.setText(department);
-                                                Circle_img.setFill(new ImagePattern(image1));
-                                                return_msg.setVisible(false);
-                                            }
-                                        }
-                                    } catch (JSONException | IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                });
+//                                Platform.runLater(() ->{
+//                                    //get student data with token
+//                                    Webb webb = Webb.create();
+//                                    JSONObject response00 = webb.post("https://" +ip_address + "/scan-profile/")
+//                                            .param("rfid_code",rfid_code)
+//                                            .param("api_request", true)
+//                                            .ensureSuccess()
+//                                            .connectTimeout(10000)
+//                                            .retry(0,false)
+//                                            .asJsonObject()
+//                                            .getBody();
+//
+//                                    try {
+//                                        boolean status_code = response00.getBoolean("success");
+//                                        if (!status_code){
+//                                            System.out.println("card doesnt exist");
+//                                            try {
+//                                                Parent content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/sample/card_not_registered_error.fxml")));
+//                                                mother_paneV.getChildren().set(3, content);
+//                                            } catch (IOException E) {
+//                                                E.printStackTrace();
+//                                            }
+//                                        }else{
+//                                            boolean is_staff = response00.getBoolean("is_staff");
+//                                            if (is_staff){
+//                                                System.out.println("this is staff");
+//                                                System.out.println(response00.getJSONArray("student").get(0));
+//                                                JSONObject jsonArray1 = (JSONObject) response00.getJSONArray("student").get(0);
+//                                                //COLLECT DIRECTLY FROM JSON
+//                                                String first_name = jsonArray1.getJSONObject("fields").get("first_name").toString();
+//                                                String surname = jsonArray1.getJSONObject("fields").get("surname").toString();
+//                                                String other_name = jsonArray1.getJSONObject("fields").get("other_name").toString();
+//                                                String department = jsonArray1.getJSONObject("fields").get("department").toString();
+//                                                String staff_id = jsonArray1.getJSONObject("fields").get("staff_id_number").toString();
+//                                                String designation = jsonArray1.getJSONObject("fields").get("designation").toString();
+//                                                String image_url = jsonArray1.getJSONObject("fields").get("photo").toString();
+//                                                Image image1 = new Image("https://" + ip_address +"/media/" +image_url, 250, 250, true, true);
+//
+//                                                FXMLLoader loader = new FXMLLoader();
+//                                                loader.setLocation(FourthClassController.class.getResource("/sample/staff_profile.fxml"));
+//                                                loader.setController(this);
+//                                                System.out.println("collected ui successfully");
+//                                                mother_paneV.getChildren().set(3, loader.load());
+//
+//                                                full_name1.setText(surname + " " + first_name + " " + other_name );
+//                                                designation_field.setText(designation);
+//                                                mat_Onj.setText(staff_id);
+//                                                dept_obj.setText(department);
+//                                                Circle_img.setFill(new ImagePattern(image1));
+//                                                return_msg.setText("STAFF");
+//
+//                                            }else {
+//                                                System.out.println("this is student");
+//                                                System.out.println(response00.getJSONArray("student").get(0));
+//                                                JSONObject jsonArray1 = (JSONObject) response00.getJSONArray("student").get(0);
+//                                                String first_name = jsonArray1.getJSONObject("fields").get("first_name").toString();
+//                                                String surname = jsonArray1.getJSONObject("fields").get("surname").toString();
+//                                                String other_name = jsonArray1.getJSONObject("fields").get("other_name").toString();
+//                                                String department = jsonArray1.getJSONObject("fields").get("department").toString();
+//                                                String matric_no = jsonArray1.getJSONObject("fields").get("matric_number").toString();
+//                                                String level = jsonArray1.getJSONObject("fields").get("level").toString();
+//                                                String flag = jsonArray1.getJSONObject("fields").get("is_flaged").toString();
+//                                                System.out.println(flag);
+//                                                String image_url = jsonArray1.getJSONObject("fields").get("photo").toString();
+//                                                Image image1 = new Image("https://" + ip_address +"/media/" +image_url, 250, 250, true, true);
+//
+//                                                FXMLLoader loader = new FXMLLoader();
+//                                                loader.setLocation(FourthClassController.class.getResource("/sample/profile_page.fxml"));
+//                                                loader.setController(this);
+//                                                System.out.println("collected ui successfully");
+//                                                mother_paneV.getChildren().set(3, loader.load());
+//
+//                                                if (flag.equals("null")) {
+//                                                    new_flag_view.setVisible(false);
+//                                                    System.out.println("flag is null");
+//                                                } else {
+//                                                    new_flag_view.setVisible(true);
+//                                                    new_flag_reason.setText(flag);
+//                                                }
+//                                                full_name1.setText(first_name + " " + surname + " " + other_name );
+//                                                level_field.setText(level);
+//                                                mat_Onj.setText(matric_no);
+//                                                dept_obj.setText(department);
+//                                                Circle_img.setFill(new ImagePattern(image1));
+//                                                return_msg.setVisible(false);
+//                                            }
+//                                        }
+//                                    } catch (JSONException | IOException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                });
                                 System.out.println("End of connection.");
 
                             } catch (SerialPortException ex) {
                                 Logger.getLogger(ThirdClassController.class.getName()).log(Level.SEVERE, null, ex);
                                 System.out.println("this is where you are");
                             }
+
                         }
                     });
+
+                    System.out.println("final code: " + rfid_code);
                 }catch (SerialPortException e){
                     e.printStackTrace();
                     System.out.println("not listening");

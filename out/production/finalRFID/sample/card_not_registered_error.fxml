@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minWidth="800.0" prefWidth="800.0" style="-fx-background-color: #c23426;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minWidth="800.0" prefWidth="800.0" style="-fx-background-color: #c23426;"  xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox VBox.vgrow="ALWAYS">
             <VBox.margin>
